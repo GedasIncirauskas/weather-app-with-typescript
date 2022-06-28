@@ -1,4 +1,4 @@
-import React = require('react');
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { publicApiInstance } from '../../utils/api';
 import { WeatherCard, SearchInput, SearchBar, Tooltip, Button } from '../../components';
@@ -9,18 +9,23 @@ import { translations } from '../../utils/translations';
 // import { useDebounce } from '../../hooks';
 import * as S from './CityWeather.styles';
 
+interface SelectedCityProps {
+  id?: number;
+  name?: string;
+}
+
 const CityWeather = () => {
-  const [inputValue, setInputValue] = React.useState('');
-  const [selectedCity, setSelectedCity] = React.useState({});
-  const [searchResults, setSearchResults] = React.useState([]);
-  const [chooseCityForecast, setChooseCityForecast] = React.useState([]);
-  const [errorMessage, setErrorMessage] = React.useState('');
+  const [inputValue, setInputValue] = useState('');
+  const [selectedCity, setSelectedCity] = useState<SelectedCityProps>({});
+  const [searchResults, setSearchResults] = useState([]);
+  const [chooseCityForecast, setChooseCityForecast] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const dispatch = useDispatch();
   // const favoriteCitiesData = useSelector(state => state.favoriteCities);
   // const debounce = useDebounce(800);
 
-  const cityValueHandler = (e: any) => {
+  const cityValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setErrorMessage('');
     setInputValue(e.target.value);
     if (inputValue.length > MIN_SEARCH_CHARACTERS) {
@@ -57,7 +62,7 @@ const CityWeather = () => {
     dispatch({ type: SAVE_SEARCH, value: selectedCity });
   };
 
-  const deleteFavoriteCity = (id: any) => {
+  const deleteFavoriteCity = (id: number) => {
     dispatch({ type: DELETE_SEARCH, id });
     setSelectedCity({});
     setChooseCityForecast([]);
@@ -110,7 +115,7 @@ const CityWeather = () => {
       {inputValue.length > MIN_SEARCH_CHARACTERS && searchResults.length === 0 && (
         <S.ErrorWrapper>{translations.msg_page_city_weather_no_result}</S.ErrorWrapper>
       )}
-      {/* {inputValue.length > MIN_SEARCH_CHARACTERS ? (
+      {inputValue.length > MIN_SEARCH_CHARACTERS ? (
         <SearchBar results={searchResults} onClick={city => getCurrentCity(city)} />
       ) : null}
       {chooseCityForecast && (
@@ -125,7 +130,7 @@ const CityWeather = () => {
           )}
           <WeatherCard data={chooseCityForecast} />
         </section>
-      )} */}
+      )}
     </>
   );
 };

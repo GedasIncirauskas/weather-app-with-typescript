@@ -1,16 +1,18 @@
-import React = require('react');
+import React from 'react';
 import { icons } from '../../utils/icons';
 import { MIN_STAR_LENGTH } from '../../config/constants';
 import * as S from './StarRating.styles';
 
-class StarRating extends React.Component<
-  {
-    hoverAnimation?: any;
-    value?: any;
-    onChange?: any;
-  },
-  { hoverAnimation: any }
-> {
+interface StarRatingState {
+  hoverAnimation: number;
+}
+
+interface StarRatingProps {
+  value: number;
+  onChange: (star: number) => void;
+}
+
+class StarRating extends React.Component<StarRatingProps, StarRatingState> {
   constructor(props: any) {
     super(props);
 
@@ -18,16 +20,16 @@ class StarRating extends React.Component<
       hoverAnimation: 0
     };
   }
-  getStarRate(star: any) {
+  getStarRate(star: number) {
     this.props.onChange(star);
   }
 
-  hoverRating(star: any) {
+  hoverRating(star: number) {
     this.setState({ hoverAnimation: star });
   }
 
   render() {
-    const rating: any = this.props.value;
+    const rating: number = this.props.value;
     const { hoverAnimation } = this.state;
 
     return (

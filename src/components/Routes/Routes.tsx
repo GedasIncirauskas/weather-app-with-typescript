@@ -1,11 +1,10 @@
-import React = require('react');
 import { Route, Switch } from 'react-router-dom';
 import { routes } from './../../config/routes';
 
-const Routes = () => {
+const Routes: React.FC<any> = () => {
   return (
     <Switch>
-      {routes.map(({ path, Component, isExact, title }: any) => (
+      {routes.map(({ path, Component, isExact, title }) => (
         <Route
           key={path}
           path={path}

@@ -1,9 +1,9 @@
-import React = require('react');
 import { getWeatherIcon, formatDate } from '../../services/functions';
 import { translations } from '../../utils/translations';
+import { ForecastTableProps } from '../../ts/interfaces';
 import * as S from './ForecastTable.styles';
 
-const ForecastTable = ({ symbol, time, temperature, windSpeed }: any) => {
+const ForecastTable: React.FC<ForecastTableProps> = ({ symbol, time, temperature, windSpeed }) => {
   return (
     <S.TableContainer>
       <tbody>

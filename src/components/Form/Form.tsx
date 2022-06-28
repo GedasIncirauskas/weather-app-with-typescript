@@ -1,4 +1,3 @@
-import React = require('react');
 import { useState, useEffect } from 'react';
 import useInput from '../../hooks/useInput';
 import { Button, Input, TextArea, Rate } from '..';
@@ -7,14 +6,14 @@ import { Storage } from '../../services/localStorage';
 import { translations } from '../../utils/translations';
 import * as S from './Form.styles';
 
-const isNotEmpty = (value: any) => value.trim() !== '';
-const isEmail = (value: any) => value.match(EMAIL_REGEXP);
-const isFeedbackEmpty = (value: any) => value.length;
+const isNotEmpty = (value: string) => value.trim() !== '';
+const isEmail = (value: string) => value.match(EMAIL_REGEXP);
+const isFeedbackEmpty = (value: string) => value.length;
 
-const BasicForm = () => {
-  const [message, setMessage] = useState('');
-  const [formIsValid, setFormIsValid] = useState(false);
-  const [rating, setRating] = useState(0);
+const BasicForm: React.FC = () => {
+  const [message, setMessage] = useState<string>('');
+  const [formIsValid, setFormIsValid] = useState<boolean>(false);
+  const [rating, setRating] = useState<number>(0);
 
   const {
     value: userName,
@@ -43,8 +42,8 @@ const BasicForm = () => {
     reset: resetReview
   } = useInput(isFeedbackEmpty);
 
-  const submitHandler = (e: any) => {
-    e.preventDefault();
+  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     if (!formIsValid) return;
 
     Storage.setReview({ userName, emailValue, reviewValue, rating });
@@ -60,7 +59,7 @@ const BasicForm = () => {
     setMessage('');
   };
 
-  const getUserRating = (rateValue: any) => {
+  const getUserRating = (rateValue: number) => {
     setRating(rateValue);
   };
 

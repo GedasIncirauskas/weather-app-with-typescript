@@ -1,22 +1,10 @@
-import React = require('react');
+import { CurrentWeatherProps } from '../../ts/interfaces';
 import { Spinner } from '..';
 import { getWeatherIcon } from '../../services/functions';
 import { translations } from '../../utils/translations';
 import * as S from './CurrentWeather.styles';
 
-interface CurrentWeatherProps {
-  data: {
-    symbol: string;
-    symbolPhrase: string;
-    temperature: number;
-    windSpeed: number;
-    cloudiness: number;
-    pressure: number;
-    time: string;
-  }[];
-}
-
-const CurrentWeather = ({ data }: CurrentWeatherProps) => {
+const CurrentWeather: React.FC<CurrentWeatherProps> = ({ data }) => {
   const [weatherData] = data;
 
   if (!weatherData) return <Spinner />;

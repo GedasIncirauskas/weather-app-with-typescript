@@ -1,4 +1,3 @@
-import React = require('react');
 import { AccordionItemContent } from '../index';
 import * as S from './AccordionItem.styles';
 
@@ -6,13 +5,13 @@ interface AccordionItemProps {
   data: {
     id: number;
     title: string;
-    about: string;
+    about: { id: number; description: string }[];
   }[];
-  toggle: (id: number) => void;
-  clicked: () => void;
+  toggle?: (id: number) => void;
+  clicked?: () => void;
 }
 
-const AccordionItem = ({ data, toggle, clicked }: any) => {
+const AccordionItem: React.FC<any> = ({ data, toggle, clicked }) => {
   const { id, title, about } = data;
   const isClicked = clicked === id;
 

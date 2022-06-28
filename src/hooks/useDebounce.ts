@@ -1,14 +1,14 @@
-// import React = require('react');
+// import { useState, useEffect, useCallback } from 'react';
 
 // const useDebounce = (debounceTime: any) => {
-//   const [timer, setTimer] = React.useState();
-//   React.useEffect(() => {
+//   const [timer, setTimer] = useState();
+//   useEffect(() => {
 //     return () => {
 //       timer && clearTimeout(timer);
 //     };
 //   }, [timer]);
 
-//   const debounce = React.useCallback(
+//   const debounce = useCallback(
 //     functionToCall => {
 //       setTimer(
 //         setTimeout(() => {

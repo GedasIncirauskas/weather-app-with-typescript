@@ -1,4 +1,4 @@
-import React = require('react');
+import { useState, useEffect } from 'react';
 import { CurrentWeather, Clock } from '../../components';
 import { publicApiInstance, getAccessTokenFromAPI } from '../../utils/api';
 import { Cookie } from '../../services/cookie';
@@ -7,9 +7,9 @@ import endpoints from '../../config/endpoints';
 import * as S from './Home.styles';
 
 const Home = () => {
-  const [data, setData] = React.useState([]);
-  const [location, setLocation] = React.useState(null);
-  const [errorMessage, setErrorMessage] = React.useState('');
+  const [data, setData] = useState([]);
+  const [location, setLocation] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const getLocation = () => {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -36,12 +36,12 @@ const Home = () => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     tokenHandler();
     getLocation();
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     getWeatherData();
   }, [location]);
 

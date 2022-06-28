@@ -1,11 +1,11 @@
-import React = require('react');
+import { WeatherCardProps } from '../../ts/interfaces';
 import { getWeatherIcon } from '../../services/functions';
 import * as S from './WeatherCard.styles';
 
-const WeatherCard = ({ data }: any) => {
+const WeatherCard: React.FC<WeatherCardProps> = ({ data }) => {
   return (
     <S.Container>
-      {data.map(({ symbol, maxTemp, maxWindSpeed, date }: any, index: any) => (
+      {data.map(({ symbol, maxTemp, maxWindSpeed, date }, index: number) => (
         <S.CardContainer key={index}>
           <S.ImageWrapper>
             <img src={getWeatherIcon(symbol)} alt={symbol} />

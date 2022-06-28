@@ -3,24 +3,31 @@ export const Storage = {
   getItem,
   setTheme,
   getTheme
-} as any;
+};
 
-function setReview(review: any) {
+interface ReviewProps {
+  emailValue: string;
+  rating: number | null;
+  reviewValue: string;
+  userName: string;
+}
+[];
+
+function setReview(review: ReviewProps) {
   const feedback = getItem('feedback') || [];
   feedback.push(review);
-
   setItem('feedback', feedback);
 }
 
-function setItem(name: string, item: any) {
+function setItem(name: string, item: boolean) {
   return localStorage.setItem(name, JSON.stringify(item));
 }
 
-function getItem(name: any) {
+function getItem(name: string) {
   return JSON.parse(localStorage.getItem(name));
 }
 
-function setTheme(theme: any) {
+function setTheme(theme: boolean) {
   return setItem('isDarkTheme', theme);
 }
 

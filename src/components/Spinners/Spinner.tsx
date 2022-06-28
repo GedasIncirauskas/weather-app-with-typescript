@@ -1,7 +1,6 @@
-import React = require('react');
 import * as S from './Spinner.styles';
 
-const Spinner = () => {
+const Spinner: React.FC = () => {
   return (
     <S.SpinnerWrapper>
       <S.Spinner viewBox="0 0 50 50">

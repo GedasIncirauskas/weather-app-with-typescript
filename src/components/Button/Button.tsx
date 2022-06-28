@@ -1,15 +1,7 @@
-import React = require('react');
+import { ButtonProps } from '../../ts/interfaces';
 import * as S from './Button.styles';
 
-interface ButtonProps {
-  type: 'submit' | 'reset' | 'button';
-  color?: string;
-  handleClick?: () => void;
-  children: React.ReactNode;
-  disabled?: boolean;
-}
-
-const Button = ({ type, color, handleClick, children, disabled }: ButtonProps) => {
+const Button: React.FC<ButtonProps> = ({ type, color, handleClick, children, disabled }) => {
   return (
     <S.StyledButton color={color} type={type} onClick={handleClick} disabled={disabled}>
       {children}

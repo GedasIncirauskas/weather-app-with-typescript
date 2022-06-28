@@ -1,14 +1,7 @@
-import React = require('react');
+import { DropdownProps } from '../../ts/interfaces';
 import * as S from './AccordionItemContent.styles';
 
-interface DropdownProps {
-  data: {
-    id: number;
-    description: string;
-  }[];
-}
-
-const Dropdown = ({ data }: DropdownProps) => {
+const Dropdown: React.FC<DropdownProps> = ({ data }) => {
   return (
     <S.Dropdown>
       {data.map(({ id, description }) => (

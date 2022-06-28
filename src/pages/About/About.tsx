@@ -1,5 +1,3 @@
-import React = require('react');
-
 import { Accordion } from '../../components';
 import { companyServiceData } from '../../utils/data';
 import { translations } from '../../utils/translations';

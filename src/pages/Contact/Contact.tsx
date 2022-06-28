@@ -1,10 +1,8 @@
-import React = require('react');
-
 import { Form } from '../../components';
 import { translations } from '../../utils/translations';
 import * as S from './Contact.styles';
 
-const Contact = () => {
+const Contact: React.FC = () => {
   return (
     <>
       <S.ContactContainer>

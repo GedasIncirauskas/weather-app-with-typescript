@@ -1,7 +1,7 @@
-import React = require('react');
+import { TooltipProps } from '../../ts/interfaces';
 import * as S from './Tooltip.style';
 
-const Tooltip = ({ children, text, tooltip }: any) => {
+const Tooltip: React.FC<TooltipProps> = ({ children, text, tooltip }) => {
   return (
     <S.TooltipContainer>
       {children}

@@ -1,16 +1,8 @@
-import React = require('react');
+import React from 'react';
+import { InputProps } from '../../../ts/interfaces';
 import * as S from './Input.styles';
 
-class Input extends React.Component<{
-  isError?: any;
-  labelName?: any;
-  labelTitle?: any;
-  type?: any;
-  value?: any;
-  onChange?: any;
-  onBlur?: any;
-  errorMessage?: any;
-}> {
+class Input extends React.Component<InputProps> {
   render() {
     return (
       <S.InputWrapper showError={this.props.isError}>

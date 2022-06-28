@@ -1,10 +1,9 @@
-import React = require('react');
 import { useState } from 'react';
 import { translations } from '../../utils/translations';
-// import { ThemeSwitcher } from '..';
+import { ThemeSwitcher } from '..';
 import * as S from './Header.styles';
 
-const Header = () => {
+const Header: React.FC = () => {
   const [open, setOpen] = useState<boolean>(true);
 
   const openBar = () => {
@@ -30,7 +29,7 @@ const Header = () => {
           <S.LinkElem activeClassName="true" to="/contacts" onClick={openBar}>
             {translations.msg_page_contacts_label}
           </S.LinkElem>
-          {/* <ThemeSwitcher /> */}
+          <ThemeSwitcher />
         </S.NavLinks>
       </S.Header>
     </S.HeaderWrapper>

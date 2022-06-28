@@ -1,8 +1,8 @@
-import React = require('react');
+import { useState, useEffect } from 'react';
 import * as S from './Clock.styles';
 
-const Clock = () => {
-  const [date, setDate] = React.useState(new Date());
+const Clock: React.FC = () => {
+  const [date, setDate] = useState(new Date());
   const currentTime = date.toLocaleTimeString(window.navigator.language);
   const dayName = date.toLocaleString(window.navigator.language, { weekday: 'long' });
 
@@ -10,7 +10,7 @@ const Clock = () => {
     setDate(new Date());
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timerId = setInterval(refreshClock, 1000);
     return () => clearInterval(timerId);
   }, []);

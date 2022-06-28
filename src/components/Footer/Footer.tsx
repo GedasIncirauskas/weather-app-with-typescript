@@ -1,7 +1,6 @@
-import React = require('react');
 import * as S from './Footer.styles';
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return <S.FooterWrapper>Weather System &copy; Gedas Inčirauskas</S.FooterWrapper>;
 };
 

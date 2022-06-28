@@ -1,4 +1,3 @@
-import React = require('react');
 import { Link } from 'react-router-dom';
 import { translations } from '../../utils/translations';
 import * as S from './NotFoundPage.styles';

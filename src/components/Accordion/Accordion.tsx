@@ -1,20 +1,9 @@
-import React = require('react');
+import { AccordionProps } from '../../ts/interfaces';
 import { useState } from 'react';
 import { AccordionItem, Spinner } from '../index';
 import * as S from './Accordion.styles';
 
-interface AccordionProps {
-  data: {
-    id: number;
-    title: string;
-    about: {
-      id: number;
-      description: string;
-    }[];
-  }[];
-}
-
-const Accordion = ({ data }: AccordionProps) => {
+const Accordion: React.FC<AccordionProps> = ({ data }) => {
   const [clicked, setClicked] = useState<number | null>(null);
 
   const toggle = (id: number) => {

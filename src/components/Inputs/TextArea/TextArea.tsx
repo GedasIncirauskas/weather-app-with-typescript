@@ -1,15 +1,15 @@
-import React = require('react');
+import { InputProps } from '../../../ts/interfaces';
 import * as S from './TextArea.styles';
 
-const Textarea = ({
+const Textarea: React.FC<InputProps> = ({
+  isError,
   labelName,
   labelTitle,
   value,
   onChange,
   onBlur,
-  isError,
   errorMessage
-}: any) => {
+}) => {
   return (
     <S.TextareaWrapper showError={isError}>
       <label htmlFor={labelName}>{labelTitle}</label>

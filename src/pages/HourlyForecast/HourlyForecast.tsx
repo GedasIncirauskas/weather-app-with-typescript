@@ -1,5 +1,5 @@
-import React = require('react');
-
+import { useState, useEffect } from 'react';
+import { ForecastTableProps } from '../../ts/interfaces';
 import { useParams, useHistory } from 'react-router-dom';
 import { Spinner, ForecastTable } from '../../components';
 import endpoints from '../../config/endpoints';
@@ -7,11 +7,11 @@ import { publicApiInstance } from '../../utils/api';
 import { translations } from '../../utils/translations';
 
 const HourlyForecast: React.FC = () => {
-  const [hourlyForecast, setHourlyForecast] = React.useState(null);
-  const { id, city }: { id: any; city: any } = useParams();
+  const [hourlyForecast, setHourlyForecast] = useState(null);
+  const { id, city }: { id: string; city: string } = useParams();
   const { push } = useHistory();
 
-  React.useEffect(() => {
+  useEffect(() => {
     getHourlyForecast();
   }, [id, city]);
 
@@ -31,16 +31,17 @@ const HourlyForecast: React.FC = () => {
       {!hourlyForecast ? (
         <Spinner />
       ) : (
-        hourlyForecast.map(({ symbol, time, temperature, windSpeed }: any, index: number) => (
-          <ForecastTable
-            key={index}
-            symbol={symbol}
-            time={time}
-            temperature={temperature}
-            windSpeed={windSpeed}
-            index={index}
-          />
-        ))
+        hourlyForecast.map(
+          ({ symbol, time, temperature, windSpeed }: ForecastTableProps, index: number) => (
+            <ForecastTable
+              key={index}
+              symbol={symbol}
+              time={time}
+              temperature={temperature}
+              windSpeed={windSpeed}
+            />
+          )
+        )
       )}
     </>
   );

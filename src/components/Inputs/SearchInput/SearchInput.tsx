@@ -1,7 +1,7 @@
-import React = require('react');
+import { SearchInputProps } from '../../../ts/interfaces';
 import * as S from './SearchInput.styles';
 
-const SearchInput = ({ placeholder, value, onChange }: any) => {
+const SearchInput: React.FC<SearchInputProps> = ({ placeholder, value, onChange }) => {
   return (
     <>
       <S.InputWrapper>

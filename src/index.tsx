@@ -1,15 +1,15 @@
 import React = require('react');
 import ReactDOM from 'react-dom';
-// import DarkModeProvider from './contexts/darkMode';
+import DarkModeProvider from './contexts/darkMode';
 import { Provider } from 'react-redux';
 import store from './store';
 import App from './App';
 
 ReactDOM.render(
   <Provider store={store}>
-    {/* <DarkModeProvider> */}
-    <App />
-    {/* </DarkModeProvider> */}
+    <DarkModeProvider>
+      <App />
+    </DarkModeProvider>
   </Provider>,
   document.getElementById('app')
 );

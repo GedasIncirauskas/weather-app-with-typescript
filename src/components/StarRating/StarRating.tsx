@@ -1,19 +1,11 @@
 import React from 'react';
+import { StarRatingProps, StarRatingState } from '../../ts/interfaces';
 import { icons } from '../../utils/icons';
 import { MIN_STAR_LENGTH } from '../../config/constants';
 import * as S from './StarRating.styles';
 
-interface StarRatingState {
-  hoverAnimation: number;
-}
-
-interface StarRatingProps {
-  value: number;
-  onChange: (star: number) => void;
-}
-
 class StarRating extends React.Component<StarRatingProps, StarRatingState> {
-  constructor(props: any) {
+  constructor(props: StarRatingProps) {
     super(props);
 
     this.state = {

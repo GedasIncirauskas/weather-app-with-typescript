@@ -1,13 +1,10 @@
 import { useState, createContext } from 'react';
+import { ChildrenProps } from '../ts/types';
 import { Storage } from '../services/localStorage';
-
-type Props = {
-  children?: React.ReactNode;
-};
 
 export const DarkModeContext = createContext(undefined);
 
-const DarkModeProvider: React.FC<Props> = ({ children }) => {
+const DarkModeProvider: React.FC<ChildrenProps> = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(Storage.getTheme());
 
   return (

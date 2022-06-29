@@ -1,11 +1,12 @@
-import { createStore } from 'redux';
+import { createStore, AnyAction } from 'redux';
+import { InitialState } from '../ts/interfaces';
 import { SAVE_SEARCH, DELETE_SEARCH } from './actionTypes';
 
-const initialState: any = {
+const initialState: InitialState = {
   favoriteCities: []
 };
 
-export const searchReducer = (state = initialState, action: any) => {
+export const searchReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case SAVE_SEARCH:
       return {

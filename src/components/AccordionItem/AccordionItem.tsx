@@ -1,17 +1,8 @@
-import { AccordionItemContent } from '../index';
+import { AccordionItemContent } from '../';
+import { AccordionItemProps } from '../../ts/interfaces';
 import * as S from './AccordionItem.styles';
 
-interface AccordionItemProps {
-  data: {
-    id: number;
-    title: string;
-    about: { id: number; description: string }[];
-  }[];
-  toggle?: (id: number) => void;
-  clicked?: () => void;
-}
-
-const AccordionItem: React.FC<any> = ({ data, toggle, clicked }) => {
+const AccordionItem: React.FC<AccordionItemProps> = ({ data, toggle, clicked }) => {
   const { id, title, about } = data;
   const isClicked = clicked === id;
 

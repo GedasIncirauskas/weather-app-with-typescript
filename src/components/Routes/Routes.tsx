@@ -2,6 +2,7 @@ import { Route, Switch } from 'react-router-dom';
 import { routes } from './../../config/routes';
 
 const Routes: React.FC<any> = () => {
+  // need to change
   return (
     <Switch>
       {routes.map(({ path, Component, isExact, title }) => (

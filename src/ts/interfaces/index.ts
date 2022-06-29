@@ -44,6 +44,16 @@ export interface AccordionProps {
   }[];
 }
 
+export interface AccordionItemProps {
+  data: {
+    id: number;
+    title: string;
+    about: { id: number; description: string }[];
+  };
+  toggle?: (id: number) => void;
+  clicked: number;
+}
+
 export interface InputProps {
   isError: boolean;
   labelName: string;
@@ -111,4 +121,33 @@ export interface ReviewProps {
 export interface SelectedCityProps {
   id?: any; // should be changed
   name?: string;
+}
+
+export interface ShowPositionProps {
+  coords: { longitude: number; latitude: number };
+}
+
+export interface InitialState {
+  favoriteCities: {
+    adminArea: string;
+    country: string;
+    id: number;
+    lat: number;
+    lon: number;
+    name: string;
+    timezone: string;
+  }[];
+}
+
+export interface StyleProps {
+  tooltip: boolean;
+}
+
+export interface StarRatingState {
+  hoverAnimation: number;
+}
+
+export interface StarRatingProps {
+  value: number;
+  onChange: (star: number) => void;
 }

@@ -1,24 +1,11 @@
 import { useState, useEffect } from 'react';
+import { ShowPositionProps } from '../../ts/interfaces';
 import { CurrentWeather, Clock } from '../../components';
 import { publicApiInstance, getAccessTokenFromAPI } from '../../utils/api';
 import { Cookie } from '../../services/cookie';
 import { translations } from '../../utils/translations';
 import endpoints from '../../config/endpoints';
 import * as S from './Home.styles';
-
-interface ShowPositionProps {
-  position: {
-    coords: {
-      accuracy: number;
-      altitude: null;
-      altitudeAccuracy: null;
-      heading: null;
-      latitude: number;
-      longitude: number;
-      speed: null;
-    };
-  };
-}
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -29,7 +16,7 @@ const Home = () => {
     navigator.geolocation.getCurrentPosition(showPosition);
   };
 
-  const showPosition = (position: any) => {
+  const showPosition = (position: ShowPositionProps) => {
     setLocation({ lon: position.coords.longitude, lat: position.coords.latitude });
   };
 

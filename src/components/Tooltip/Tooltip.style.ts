@@ -1,8 +1,5 @@
+import { StyleProps } from '../../ts/interfaces';
 import styled from 'styled-components';
-
-interface StyleProps {
-  tooltip: boolean;
-}
 
 export const TooltipContainer = styled.div`
   position: relative;

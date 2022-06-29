@@ -19,7 +19,7 @@ export interface CurrentWeatherProps {
 }
 
 export interface ButtonProps {
-  type: 'submit' | 'reset' | 'button';
+  type?: 'submit' | 'reset' | 'button';
   color?: string;
   handleClick?: () => void;
   children: React.ReactNode;
@@ -98,4 +98,17 @@ export interface WeatherCardProps {
     maxWindSpeed: number;
     date: string;
   }[];
+}
+
+export interface ReviewProps {
+  emailValue: string;
+  rating: number | null;
+  reviewValue: string;
+  userName: string;
+}
+[];
+
+export interface SelectedCityProps {
+  id?: any; // should be changed
+  name?: string;
 }

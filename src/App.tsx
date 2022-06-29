@@ -6,7 +6,7 @@ import { GlobalStyles } from './styles/globalStyles';
 import * as S from './App.styles';
 
 const App: React.FC = () => {
-  const { isDarkMode } = useContext<any>(DarkModeContext);
+  const { isDarkMode } = useContext(DarkModeContext);
 
   return (
     <Router>

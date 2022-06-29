@@ -1,17 +1,11 @@
+import { ReviewProps } from '../ts/interfaces';
+
 export const Storage = {
   setReview,
   getItem,
   setTheme,
   getTheme
 };
-
-interface ReviewProps {
-  emailValue: string;
-  rating: number | null;
-  reviewValue: string;
-  userName: string;
-}
-[];
 
 function setReview(review: ReviewProps) {
   const feedback = getItem('feedback') || [];

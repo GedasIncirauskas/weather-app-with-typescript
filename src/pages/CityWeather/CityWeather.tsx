@@ -1,18 +1,15 @@
 import { useState } from 'react';
+import { SelectedCityProps } from '../../ts/interfaces';
 import { useSelector, useDispatch } from 'react-redux';
 import { publicApiInstance } from '../../utils/api';
 import { WeatherCard, SearchInput, SearchBar, Tooltip, Button } from '../../components';
 import endpoints from '../../config/endpoints';
 import { MIN_SEARCH_CHARACTERS } from '../../config/constants';
 import { SAVE_SEARCH, DELETE_SEARCH } from '../../store/actionTypes';
+import { RootState, AppDispatch } from '../../store';
 import { translations } from '../../utils/translations';
-// import { useDebounce } from '../../hooks';
+import { useDebounce } from '../../hooks';
 import * as S from './CityWeather.styles';
-
-interface SelectedCityProps {
-  id?: number;
-  name?: string;
-}
 
 const CityWeather = () => {
   const [inputValue, setInputValue] = useState('');
@@ -21,17 +18,17 @@ const CityWeather = () => {
   const [chooseCityForecast, setChooseCityForecast] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const dispatch = useDispatch();
-  // const favoriteCitiesData = useSelector(state => state.favoriteCities);
-  // const debounce = useDebounce(800);
+  const dispatch = useDispatch<AppDispatch>();
+  const favoriteCitiesData = useSelector((state: RootState) => state.favoriteCities);
+  const debounce = useDebounce(800);
 
   const cityValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setErrorMessage('');
     setInputValue(e.target.value);
     if (inputValue.length > MIN_SEARCH_CHARACTERS) {
-      // debounce(() => {
-      loadCities();
-      // });
+      debounce(() => {
+        loadCities();
+      });
     }
   };
 
@@ -45,7 +42,7 @@ const CityWeather = () => {
     }
   };
 
-  const getCurrentCity = async (city: any) => {
+  const getCurrentCity = async (city: SelectedCityProps) => {
     setErrorMessage('');
     try {
       const { data } = await publicApiInstance.get(endpoints.GET_CITY_BY_ID(city.id));
@@ -68,15 +65,13 @@ const CityWeather = () => {
     setChooseCityForecast([]);
   };
 
-  const findFavoriteCity = (city: any) => {
+  const findFavoriteCity = (city: SelectedCityProps) => {
     getCurrentCity(city);
   };
 
-  // const isCityExist = cityTitle => {
-  //   return favoriteCitiesData.some(({ name }) => name === cityTitle);
-  // };
-
-  const favoriteCitiesData = [{ id: 1, name: 'Vilnius' }];
+  const isCityExist = (cityTitle: string) => {
+    return favoriteCitiesData.some(({ name }: { name: string }) => name === cityTitle);
+  };
 
   if (errorMessage) {
     return <S.ErrorMessage>{errorMessage}</S.ErrorMessage>;
@@ -86,7 +81,7 @@ const CityWeather = () => {
     <>
       <S.Title>{translations.msg_page_city_weather_title}</S.Title>
       <S.Wrapper>
-        {favoriteCitiesData.map(({ id, name }) => (
+        {favoriteCitiesData.map(({ id, name }: SelectedCityProps) => (
           <S.CityContainer key={id}>
             <span onClick={() => findFavoriteCity({ id, name })}>{name}</span>
             <S.DeleteWrapper onClick={() => deleteFavoriteCity(id)}>X</S.DeleteWrapper>
@@ -102,14 +97,14 @@ const CityWeather = () => {
           <SearchInput
             placeholder={translations.msg_search_input_title}
             value={inputValue}
-            onChange={(e: any) => cityValueHandler(e)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => cityValueHandler(e)}
           />
-          {/* {isCityExist(selectedCity.name) ||
+          {isCityExist(selectedCity.name) ||
             (selectedCity.name && (
               <Button color="destructive" handleClick={saveFavoriteCity}>
                 {`${translations.msg_button_save_city}${selectedCity.name}`}
               </Button>
-            ))} */}
+            ))}
         </S.InputContainer>
       </Tooltip>
       {inputValue.length > MIN_SEARCH_CHARACTERS && searchResults.length === 0 && (

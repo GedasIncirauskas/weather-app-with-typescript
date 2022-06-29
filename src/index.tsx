@@ -1,4 +1,3 @@
-import React = require('react');
 import ReactDOM from 'react-dom';
 import DarkModeProvider from './contexts/darkMode';
 import { Provider } from 'react-redux';

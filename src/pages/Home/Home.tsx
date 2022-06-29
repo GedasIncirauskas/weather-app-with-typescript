@@ -6,6 +6,20 @@ import { translations } from '../../utils/translations';
 import endpoints from '../../config/endpoints';
 import * as S from './Home.styles';
 
+interface ShowPositionProps {
+  position: {
+    coords: {
+      accuracy: number;
+      altitude: null;
+      altitudeAccuracy: null;
+      heading: null;
+      latitude: number;
+      longitude: number;
+      speed: null;
+    };
+  };
+}
+
 const Home = () => {
   const [data, setData] = useState([]);
   const [location, setLocation] = useState(null);

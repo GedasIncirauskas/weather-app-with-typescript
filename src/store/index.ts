@@ -26,3 +26,6 @@ export const searchReducer = (state = initialState, action: any) => {
 const store = createStore(searchReducer);
 
 export default store;
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

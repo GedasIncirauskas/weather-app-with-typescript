@@ -1,24 +1,24 @@
-// import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
-// const useDebounce = (debounceTime: any) => {
-//   const [timer, setTimer] = useState();
-//   useEffect(() => {
-//     return () => {
-//       timer && clearTimeout(timer);
-//     };
-//   }, [timer]);
+const useDebounce = (debounceTime: number) => {
+  const [timer, setTimer] = useState(null);
+  useEffect(() => {
+    return () => {
+      timer && clearTimeout(timer);
+    };
+  }, [timer]);
 
-//   const debounce = useCallback(
-//     functionToCall => {
-//       setTimer(
-//         setTimeout(() => {
-//           functionToCall();
-//         }, debounceTime)
-//       );
-//     },
-//     [debounceTime]
-//   );
-//   return debounce;
-// };
+  const debounce = useCallback(
+    (functionToCall: () => void) => {
+      setTimer(
+        setTimeout(() => {
+          functionToCall();
+        }, debounceTime)
+      );
+    },
+    [debounceTime]
+  );
+  return debounce;
+};
 
-// export default useDebounce;
+export default useDebounce;

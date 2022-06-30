@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface ForecastTableProps {
   symbol: string;
   time: Date;
@@ -75,13 +77,6 @@ export interface SearchInputProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface RouteProps {
-  path: string;
-  Component?: React.ComponentType<any>;
-  isExact: boolean;
-  title: string;
-}
-
 export interface SearchBarProps {
   results: {
     adminArea: string;
@@ -92,7 +87,7 @@ export interface SearchBarProps {
     name: string;
     timezone: string;
   }[];
-  onClick: (event: any) => void; // should be changed
+  onClick: (results: { [index: number]: SearchBarProps }) => void;
 }
 
 export interface TooltipProps {
@@ -119,7 +114,7 @@ export interface ReviewProps {
 [];
 
 export interface SelectedCityProps {
-  id?: any; // should be changed
+  id?: any; // change!
   name?: string;
 }
 

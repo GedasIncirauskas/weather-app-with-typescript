@@ -7,7 +7,7 @@ import { translations } from '../../utils/translations';
 import endpoints from '../../config/endpoints';
 import * as S from './Home.styles';
 
-const Home = () => {
+const Home: React.FC = () => {
   const [data, setData] = useState([]);
   const [location, setLocation] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
